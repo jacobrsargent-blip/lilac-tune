@@ -1,0 +1,13 @@
+name: Build Lilac Tune
+on: [push, workflow_dispatch]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -B build
+      - run: cmake --build build --config Release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LilacTune-Windows-VST3
+          path: build/LilacTune_artefacts/Release/VST3
